@@ -3,24 +3,24 @@ const { Schema } = mongoose;
 const userSchema = new Schema(
     {
         firstName: {
-            type: STRING,
+            type: String,
             allowNull: false
         },
         lastName: {
-            type: STRING,
+            type: String,
             allowNull: false
         },
         MobileNumber: {
-            type: STRING,
+            type: String,
             allowNull: false
         },
         email: {
-            type: STRING,
+            type: String,
             allowNull: false,
             unique: true
         },
         password: {
-            type: STRING,
+            type: String,
             allowNull: false
         },
     },
