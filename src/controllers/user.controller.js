@@ -25,3 +25,24 @@ exports.createUser = async (req, res) => {
       });
     }
   }
+
+  exports.getAllUser = async (req, res) => {
+
+    try {
+  
+      const result = await UserModel.find({
+        // attributes: ["id", "firstName", "lastName", "MobileNumber", "email"]
+      });
+  
+      return res.status(201).json({
+        sucess: true,
+        response: result,
+      });
+  
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        msg: "Internal server error",
+      });
+    }
+  }
