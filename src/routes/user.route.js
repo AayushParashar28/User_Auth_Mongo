@@ -7,4 +7,6 @@ UserRouter.post("/user", Usercontroller.createUser);
 
 UserRouter.get("/alluser",Usercontroller.getAllUser);
 
+UserRouter.post("/login",Usercontroller.signin);
+
 module.exports = UserRouter ;
