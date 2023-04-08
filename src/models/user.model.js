@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+
 const userSchema = new Schema(
     {
         firstName: {
@@ -26,6 +27,7 @@ const userSchema = new Schema(
     },
     { timestamps: true }
 );
+
 
 const User = mongoose.model("User", userSchema);
 

@@ -1,4 +1,5 @@
 const UserModel = require("../models/user.model");
+const passwordHelper = require("../utils/password.helper");
 
 exports.createUser = async (req, res) => {
 
@@ -10,6 +11,10 @@ exports.createUser = async (req, res) => {
         email: req.body.email,
         password: req.body.password
       };
+
+      const salt = passwordHelper.generateSalt();
+      User.salt = salt;
+      User.password = passwordHelper.hashPassword(User.password, salt);
   
       const result = await UserModel.create(User);
   
@@ -50,22 +55,22 @@ exports.createUser = async (req, res) => {
 
     try {
       const user = {
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password
       }
-      const checkUser = await UserModel.find({
-        where:
-        {
-          email: user.email
-        }
-      })
+       const checkUser = await UserModel.findOne({ email: user.email });
+      
       if(!checkUser){
         return res.status(200).json({
           "msg":"Invalid Email"
         })
       }
       if(checkUser) {
-        console.log(password);
-        if (password == req.body.password) {
+        const checkPassword = passwordHelper.decodePassword(
+          user.password,
+          checkUser.password
+        );
+        if (checkPassword) {
           return res.status(200).json({
             "msg": 'Login Sucessfull '
           })

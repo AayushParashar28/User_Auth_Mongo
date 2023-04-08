@@ -5,7 +5,7 @@ const UserRouter = express.Router();
 
 UserRouter.post("/user", Usercontroller.createUser);
 
-UserRouter.get("/alluser",Usercontroller.getAllUser);
+UserRouter.get("/getalluser",Usercontroller.getAllUser);
 
 UserRouter.post("/login",Usercontroller.signin);
 
